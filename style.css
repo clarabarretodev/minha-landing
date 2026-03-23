@@ -1,0 +1,223 @@
+:root {
+  --cor-primaria: #9392B2;
+  --cor-fundo: #FCFAF1;
+  --cor-texto: #33202A;
+  --fonte-base: 'Segoe UI', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fonte-base);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.25rem; }
+p  { font-size: 1rem; }
+
+section {
+  padding: 4rem 2rem;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+header {
+  background-color: var(--cor-primaria);
+  padding: 1rem 2rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--cor-fundo);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav ul li a {
+  color: var(--cor-fundo);
+  text-decoration: none;
+}
+
+#hero {
+  background-color: var(--cor-primaria);
+  color: var(--cor-fundo);
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+#hero h1 {
+  margin-bottom: 1rem;
+}
+
+#hero p {
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+}
+
+#hero a {
+  background-color: var(--cor-fundo);
+  color: var(--cor-primaria);
+  padding: .75rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* sobre */
+#sobre {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#sobre h2 {
+  color: var(--cor-primaria);
+  margin-bottom: 1rem;
+}
+
+#sobre p {
+  line-height: 1.8;
+}
+
+/* habilidades */
+#habilidades {
+  background-color: var(--cor-primaria);
+  color: var(--cor-fundo);
+  text-align: center;
+}
+
+#habilidades h2 {
+  margin-bottom: 2rem;
+}
+
+#habilidades ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#habilidades li {
+  background-color: var(--cor-fundo);
+  color: var(--cor-primaria);
+  padding: .5rem 1.5rem;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: .9rem;
+}
+
+/* projetos */
+#projetos h2 {
+  color: var(--cor-primaria);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.cards {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background-color: var(--cor-fundo);
+  border: 2px solid var(--cor-primaria);
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 280px;
+}
+
+.card h3 {
+  color: var(--cor-primaria);
+  margin-bottom: .75rem;
+}
+
+.card p {
+  margin-bottom: 1rem;
+}
+
+.card a {
+  color: var(--cor-primaria);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* contato */
+#contato {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#contato h2 {
+  color: var(--cor-primaria);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  font-weight: bold;
+  font-size: .9rem;
+}
+
+input, textarea {
+  padding: .75rem;
+  border: 1.5px solid var(--cor-primaria);
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+button {
+  background-color: var(--cor-primaria);
+  color: var(--cor-fundo);
+  padding: .75rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* footer */
+footer {
+  background-color: var(--cor-primaria);
+  color: var(--cor-fundo);
+  text-align: center;
+  padding: 2rem;
+  font-size: .875rem;
+}
