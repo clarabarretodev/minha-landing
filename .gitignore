@@ -1,0 +1,9 @@
+# arquivos indesejados
+udo modprobe -r btusb
+
+# temporários
+*.tmp
+*.swp
+
+# logs
+*.log
