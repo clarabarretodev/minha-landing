@@ -13,6 +13,9 @@
     --border: rgba(243,243,243,0.07);
     --font-display: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
+    --space-x: 48px;
+    --space-y: 100px;
+    --hero-top: 160px;
   }
 
   html { scroll-behavior: smooth; }
@@ -116,7 +119,7 @@
   }
 
   /* ─── SECTIONS COMMON ─── */
-  section { padding: 100px 48px; max-width: 1100px; margin: 0 auto; }
+  section { padding: var(--space-y) var(--space-x); max-width: 1100px; margin: 0 auto; }
 
   .pill-label {
     display: inline-block;
@@ -833,9 +836,12 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    section { padding: 60px 24px; }
+  :root {
+    --space-x: 24px;
+    --space-y: 60px;
+  }
+  nav { padding: 16px var(--space-x); }
+  section { padding: var(--space-y) var(--space-x); }
     #about { grid-template-columns: 1fr; gap: 0; }
     #about .left { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
     .hero-bottom { grid-template-columns: 1fr; }
