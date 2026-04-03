@@ -856,6 +856,7 @@
     #about { grid-template-columns: 1fr; gap: 0; }
     #about .left { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
     .hero-bottom { grid-template-columns: 1fr; }
+    .hero-desc { max-width: 100%; }
     .hero-stat { text-align: left; }
     .hero-socials { justify-content: flex-start; }
     .stats-row { gap: 32px; }
