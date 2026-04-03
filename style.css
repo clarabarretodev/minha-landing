@@ -277,7 +277,11 @@
     transition: border-color 0.2s, color 0.2s;
   }
 
-  .social-icon:hover { border-color: var(--accent); color: var(--fg); }
+  .social-icon:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+  box-shadow: 0 0 12px rgba(123, 44, 191, 0.3);
+  }
 
   .divider {
     height: 1px;
