@@ -257,6 +257,7 @@
     max-width: 160px;
     text-align: right;
     margin-left: auto;
+    opacity: 0.6;
   }
 
   .hero-socials {
