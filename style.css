@@ -55,6 +55,7 @@ nav {
   background: var(--grad);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text; flex-shrink: 0;
+  text-decoration: none;
 }
 
 .nav-pills {
@@ -89,12 +90,6 @@ nav {
   50%       { box-shadow: 0 0 0 8px rgba(212,87,42,0); }
 }
 
-.nav-avatar {
-  width: 30px; height: 30px; border-radius: 50%;
-  background: var(--card); border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; color: var(--orange);
-}
 
 /* ── HERO (dark + groovy) ── */
 #hero {
@@ -241,7 +236,9 @@ nav {
 #about {
   background: var(--bg);
   padding: 100px 48px;
-  display: grid; grid-template-columns: 220px 1fr; gap: 80px;
+  display: grid; 
+  grid-template-columns: 220px 1fr; 
+  gap: 80px;
 }
 
 .about-title {
@@ -277,8 +274,7 @@ nav {
 .bento-card.indigo { background: #2A1208; color: #fff; grid-column: span 2; }
 .bento-card.sand   { background: #F0956A; color: #1a0a04; }
 .bento-card.blush  { background: #2A1208; color: #fff; }
-.bento-card.dark   { background: var(--card); border: 1px solid var(--border); color: var(--fg); grid-column: span 3; }
-
+.bento-card.dark { background: var(--card); border: 1px solid var(--border); color: var(--fg); }
 .bento-num {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 48px; font-weight: 900; line-height: 1; letter-spacing: -2.5px;
@@ -366,7 +362,6 @@ nav {
 .work-card:hover { border-color: rgba(240,149,106,0.3); transform: translateY(-4px); }
 
 .work-card.featured {
-  grid-column: span 2;
   background: var(--rust);
   border-color: transparent;
 }
@@ -509,3 +504,57 @@ footer {
 .footer-socials { display: flex; gap: 10px; }
 .footer-socials a { color: var(--muted); font-size: 14px; text-decoration: none; transition: color 0.2s; }
 .footer-socials a:hover { color: var(--orange); }
+
+/* =====================
+   RESPONSIVIDADE MOBILE
+   ===================== */
+
+ @media (max-width: 768px) {
+
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #about {
+    grid-template-columns: 1fr;
+    padding: 60px 24px;
+    gap: 32px;
+  }
+
+  .nav-pills {
+    display: none;
+  }
+
+  nav {
+    padding: 12px 24px;
+  }
+
+  #hero {
+    padding: 60px 24px;
+  }
+
+  #work {
+    padding: 60px 24px;
+  }
+
+  #contact {
+    padding: 60px 24px;
+  }
+
+  .about-title {
+    font-size: clamp(28px, 8vw, 42px);
+  }
+
+  .work-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .work-card.featured {
+    grid-column: span 1;
+  }
+
+  .bento-card.dark {
+    grid-column: span 1;
+  }
+
+}
