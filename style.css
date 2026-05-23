@@ -356,10 +356,14 @@ nav {
 .work-card {
   background: var(--card); border: 1px solid var(--border);
   border-radius: 16px; padding: 24px;
-  cursor: pointer; transition: border-color 0.2s, transform 0.2s;
+  cursor: pointer; transition: border-color 0.2s, transform 0.2s, filter 0.4s;
   position: relative; overflow: hidden;
 }
-.work-card:hover { border-color: rgba(240,149,106,0.3); transform: translateY(-4px); }
+.work-card:hover { 
+  border-color: rgba(240,149,106,0.3); 
+  transform: translateY(-4px); 
+  filter:brightness(1.1);
+}
 
 .work-card.featured {
   background: var(--rust);
