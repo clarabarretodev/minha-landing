@@ -1,0 +1,290 @@
+/* ============================================
+   layout.css — clarabarretodev
+   Estrutura da página: nav, hero, seções,
+   carrossel, footer. Sem cores, sem detalhes
+   visuais — só posicionamento e espaçamento.
+   ============================================ */
+
+/* ── Variável local de padding de seção ──
+   Definida aqui pois é uma decisão de layout,
+   não um token global de espaçamento.         */
+:root {
+  --space-section: 24px;  /* padding horizontal padrão */
+}
+
+/* ============================================
+   BASE
+   ============================================ */
+
+.page {
+  background-color: var(--color-bg);
+  min-height: 100vh;
+}
+
+/* ============================================
+   NAV
+   ============================================ */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px var(--space-section) 16px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.nav-menu {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+
+  /* padding uniforme — exceção intencional em
+     relação ao resto do site (24px → 48px)     */
+  padding: var(--space-lg);
+}
+
+/* canvas da animação fica abaixo de tudo */
+.hero canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-canvas);
+}
+
+/* conteúdo principal: lado esquerdo */
+.hero-content {
+  position: relative;
+  z-index: var(--z-content);
+  max-width: 52%;
+}
+
+/* 6+ e linkedin: canto inferior direito */
+.hero-aside {
+  position: absolute;
+  z-index: var(--z-content);
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-sm);
+}
+
+/* ============================================
+   SEÇÕES — estrutura comum
+   ============================================ */
+
+.sec {
+  padding: var(--space-xl) var(--space-section) 0;
+}
+
+/* última seção antes do footer tem padding extra
+   para compensar a ausência do padding-bottom    */
+.sec:last-of-type {
+  padding-bottom: var(--space-2xl);
+}
+
+/* ============================================
+   SOBRE MIM — stats grid
+   ============================================ */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+/* ============================================
+   MEU TRABALHO — carrossel
+   ============================================ */
+
+.carousel-wrap {
+  margin-top: 18px;
+
+  /* overflow visível na direita para o peek
+     do próximo card funcionar               */
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  /* padding-left alinha com o restante da página;
+     padding-right deixa o peek do próximo card   */
+  padding-left: var(--space-section);
+  padding-right: calc(var(--space-section) / 2);
+  padding-bottom: 2px; /* evita cortar sombra de foco */
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-card {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+
+  /* ocupa quase toda a largura:
+     100vw menos os dois paddings (24px × 2)
+     menos metade do gap para mostrar o próximo  */
+  width: calc(100vw - (var(--space-section) * 2) - (var(--space-sm) / 2));
+  max-width: 340px; /* teto para telas maiores */
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding: 14px 0 0;
+}
+
+/* ============================================
+   CÓDIGO — github card
+   ============================================ */
+
+.gh-card {
+  margin-top: 18px;
+}
+
+/* ============================================
+   FALA COMIGO — formulário
+   ============================================ */
+
+.form-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) var(--space-section);
+  margin-top: var(--space-2xl);
+}
+
+/* ============================================
+   BREAKPOINTS — mobile first
+   ============================================ */
+
+/* ── 480px: mobile largo ── */
+@media (min-width: 480px) {
+  .hero-content {
+    max-width: 55%;
+  }
+}
+
+/* ── 768px: tablet ── */
+@media (min-width: 768px) {
+
+  :root {
+    --space-section: 32px;
+  }
+
+  .hero {
+    min-height: 380px;
+    padding: 64px;
+  }
+
+  .hero-aside {
+    right: 64px;
+    bottom: 64px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .carousel-card {
+    width: 320px; /* largura fixa no tablet — cabe 2 na tela */
+    max-width: none;
+  }
+
+  .sec {
+    padding-top: 72px;
+  }
+}
+
+/* ── 1024px: desktop ── */
+@media (min-width: 1024px) {
+
+  :root {
+    --space-section: 48px;
+  }
+
+  .nav {
+    padding-top: 24px;
+    padding-bottom: 20px;
+  }
+
+  .hero {
+    min-height: 480px;
+    padding: 80px;
+  }
+
+  .hero-aside {
+    right: 80px;
+    bottom: 80px;
+  }
+
+  .hero-content {
+    max-width: 45%;
+  }
+
+  /* no desktop o carrossel pode virar grid */
+  .carousel-track {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow-x: visible;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .carousel-card {
+    width: auto;
+  }
+
+  .carousel-dots {
+    display: none; /* dots desnecessários no grid */
+  }
+
+  .sec {
+    padding-top: 96px;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

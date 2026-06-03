@@ -1,0 +1,134 @@
+/* ============================================
+   hero.css — clarabarretodev
+   Estilos específicos do hero: canvas,
+   animação bézier, ruído, posicionamento
+   do conteúdo e do aside.
+   ============================================ */
+
+/* ============================================
+   ESTRUTURA
+   ============================================ */
+
+/* o hero já tem position: relative no layout.css
+   o canvas fica na camada mais baixa (z-index 1)
+   o conteúdo fica acima (z-index 2)              */
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* espaço entre o h1 e o subtítulo */
+.hero-content h1 {
+  margin-bottom: 0; /* reset — espaço vem do hero-sub margin-top */
+}
+
+/* ============================================
+   TIPOGRAFIA DO HERO
+   ============================================ */
+
+/* h1 herda de components.css mas ganha
+   ajuste de tamanho responsivo aqui         */
+.hero h1 {
+  font-size: clamp(32px, 10vw, var(--text-xl));
+  /* clamp(mínimo, fluido, máximo)
+     → em telas muito pequenas não fica menor que 32px
+     → cresce com a tela até o máximo de 38px          */
+}
+
+/* a palavra em amarelo */
+.hero h1 em {
+  color: var(--color-accent);
+  font-style: normal;
+}
+
+/* ============================================
+   CANVAS — animação bézier
+   ============================================ */
+
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-canvas);
+  /* declara que é decorativo para leitores de tela */
+  /* aria-hidden="true" fica no HTML               */
+
+  /* evita que o canvas capture eventos de mouse/touch
+     que deveriam chegar ao conteúdo abaixo          */
+  pointer-events: none;
+}
+
+/* ============================================
+   CAMADAS DA ANIMAÇÃO
+   Documentação das três camadas desenhadas
+   via JavaScript no hero-canvas.js:
+
+   1. RUÍDO
+      — canvas de ruído estático gerado uma vez
+      — desloca levemente a cada frame (drift)
+      — globalAlpha: 0.018 (muito sutil)
+      — cria textura de grain fotográfico
+
+   2. CURVA BÉZIER
+      — 4 pontos de controle
+      — cp1 e cp2 derivam com sin/cos
+      — strokeStyle: rgba(232,255,90, ~0.12–0.17)
+      — lineWidth: 0.9px
+      — pontos de controle: círculos de 2.2px
+      — linhas auxiliares: rgba(232,255,90, 0.05)
+
+   3. CARACTERES DE CÓDIGO
+      — array: ['b','e','z','i','e','r',
+                '(','x',',',' ','y',')',
+                ' ','{','}',' ','=','>',' ','p','a','t','h']
+      — aparecem com fade-in escalonado (delay: i × 22)
+      — opacidade máxima: 0.38
+      — pulsam em sincronia com a curva
+      — font: 9px monospace
+   ============================================ */
+
+/* ============================================
+   REDUCED MOTION — respeita preferência do SO
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* o canvas continua visível mas a animação
+     é pausada via JS (ver hero-canvas.js)     */
+  #hero-canvas {
+    opacity: 0.4; /* mostra o estado inicial, sem movimento */
+  }
+}
+
+/* ============================================
+   BREAKPOINTS
+   ============================================ */
+
+/* tablet */
+@media (min-width: 768px) {
+  .hero h1 {
+    font-size: clamp(38px, 6vw, 52px);
+  }
+
+  .hero-sub {
+    max-width: 280px;
+  }
+}
+
+/* desktop */
+@media (min-width: 1024px) {
+  .hero h1 {
+    font-size: clamp(52px, 5vw, 72px);
+  }
+
+  .hero-sub {
+    max-width: 320px;
+    font-size: 15px;
+  }
+
+  .hero-stat .stat-number {
+    font-size: 38px;
+  }
+}

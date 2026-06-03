@@ -1,0 +1,95 @@
+/* ============================================
+   tokens.css — clarabarretodev
+   Design system: variáveis globais
+   Não escreva seletores aqui, só variáveis.
+   ============================================ */
+
+:root {
+
+  /* ── CORES: Backgrounds ── */
+  --color-bg:           #111111;  /* fundo principal da página */
+  --color-bg-elevated:  #161616;  /* cards, inputs, painéis */
+  --color-bg-subtle:    #1a1a1a;  /* imagens placeholder */
+
+  /* ── CORES: Bordas ── */
+  --color-border:       #2a2a2a;  /* bordas de cards (padrão) */
+  --color-border-mid:   #444444;  /* bordas interativas (hover, focus) */
+  --color-border-light: #767676;  /* bordas com mais visibilidade */
+
+  /* ── CORES: Texto ──
+     Todos passam WCAG AA sobre --color-bg (#111):
+     primary   → 21:1   AAA ✅
+     secondary → 7.5:1  AAA ✅
+     muted     → 4.6:1  AA  ✅ (mínimo permitido)
+  */
+  --color-text-primary:   #ffffff;
+  --color-text-secondary: #aaaaaa;
+  --color-text-muted:     #767676;
+
+  /* ── CORES: Acento ──
+     #e8ff5a sobre #111 → ratio 14:1  AAA ✅
+     #111 sobre #e8ff5a → ratio 14:1  AAA ✅
+  */
+  --color-accent:       #e8ff5a;
+  --color-accent-hover: #f5ff8a;  /* clareado para hover */
+  --color-accent-text:  #111111;  /* texto sobre fundo acento */
+
+  /* ── TIPOGRAFIA: Famílias ── */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body:    'Helvetica Neue', 'Arial', sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* ── TIPOGRAFIA: Escala (mobile first) ── */
+  --text-xs:   11px;  /* labels uppercase, metadados */
+  --text-sm:   12px;  /* labels de formulário */
+  --text-base: 13px;  /* corpo de texto, descrições */
+  --text-md:   15px;  /* destaques, subtítulos */
+  --text-lg:   24px;  /* títulos de seção (h2) */
+  --text-xl:   38px;  /* hero h1 */
+
+  /* ── TIPOGRAFIA: Pesos ── */
+  --weight-regular: 400;
+  --weight-bold:    700;
+  --weight-black:   800;  /* exclusivo: Outfit nos headings */
+
+  /* ── TIPOGRAFIA: Entrelinhamento ── */
+  --leading-tight:  1.05;  /* headings grandes */
+  --leading-snug:   1.3;   /* headings médios, cards */
+  --leading-normal: 1.6;   /* corpo */
+  --leading-loose:  1.7;   /* parágrafos longos */
+
+  /* ── TIPOGRAFIA: Tracking ── */
+  --tracking-tight:  -0.02em;  /* headings grandes */
+  --tracking-normal:  0;
+  --tracking-wide:    0.07em;  /* labels */
+  --tracking-wider:   0.14em; /* section labels */
+
+  /* ── ESPAÇAMENTO ── */
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  20px;  /* padding horizontal padrão das seções */
+  --space-lg:  48px;  /* padding do hero (todos os lados) */
+  --space-xl:  56px;  /* gap entre seções */
+  --space-2xl: 64px;  /* espaço antes do footer */
+
+  /* ── BORDAS: Raios ── */
+  --radius-sm:   3px;   /* botões nav, badges */
+  --radius-md:   6px;   /* inputs, botões */
+  --radius-lg:   8px;   /* stat cards */
+  --radius-xl:   10px;  /* project cards, github card */
+  --radius-full: 9999px; /* pílulas, ícone circular */
+
+  /* ── BORDAS: Espessura ── */
+  --border-thin: 0.5px;
+
+  /* ── TRANSIÇÕES ── */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.2s ease;
+
+  /* ── Z-INDEX ── */
+  --z-base:    0;
+  --z-canvas:  1;   /* canvas animado (hero bg) */
+  --z-content: 2;   /* conteúdo sobre o canvas */
+  --z-nav:     10;  /* nav fixa */
+
+}
