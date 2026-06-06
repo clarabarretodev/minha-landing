@@ -51,10 +51,10 @@
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: 300px;
-
-  /* padding uniforme — exceção intencional em
-     relação ao resto do site (24px → 48px)     */
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   padding: var(--space-lg);
 }
 
@@ -67,24 +67,6 @@
   z-index: var(--z-canvas);
 }
 
-/* conteúdo principal: lado esquerdo */
-.hero-content {
-  position: relative;
-  z-index: var(--z-content);
-  max-width: 52%;
-}
-
-/* 6+ e linkedin: canto inferior direito */
-.hero-aside {
-  position: absolute;
-  z-index: var(--z-content);
-  right: var(--space-lg);
-  bottom: var(--space-lg);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--space-sm);
-}
 
 /* ============================================
    SEÇÕES — estrutura comum
