@@ -52,11 +52,16 @@ em.accent {
 
 /* label de seção — "sobre mim", "código" etc */
 .sec-label {
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
+  padding: 6px 12px;
+  border: var(--border-thin) solid var(--color-border-mid);
+  border-radius: var(--radius-full);
   margin-bottom: 10px;
 }
 
@@ -201,18 +206,22 @@ em.accent {
    ============================================ */
 
 .project-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
   background-color: var(--color-bg-elevated);
   border: var(--border-thin) solid var(--color-border);
   border-radius: var(--radius-xl);
-  overflow: hidden;
+  padding: 14px;
 }
 
 .project-card-image {
-  width: 100%;
-  height: 160px;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-lg);
   background-color: var(--color-bg-subtle);
   object-fit: cover;
-  display: block;
+  flex-shrink: 0;
 }
 
 /* placeholder quando não há imagem */
@@ -232,7 +241,8 @@ em.accent {
 }
 
 .project-card-body {
-  padding: 12px 14px 16px;
+  flex: 1;
+  min-width: 0;
 }
 
 .project-card-tag {
