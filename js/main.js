@@ -335,35 +335,19 @@ document.addEventListener('DOMContentLoaded', function () {
           document.getElementById('mensagem').focus();
         }
 
-      } else {
+            } else {
 
-        /* ── sucesso ──
+        /* nenhum erro — formulário válido */
+        feedback.textContent = 'Mensagem enviada com sucesso!';
+        feedback.style.color = '#4caf50'; /* verde — sucesso */
 
-           Aqui você vai conectar com um serviço
-           de envio de emails no futuro.
-           Opções: Formspree, EmailJS, Web3Forms
-           (todos têm plano gratuito).
-
-           Por enquanto, só mostra confirmação.  */
-
-        feedback.textContent = 'Mensagem enviada! Em breve entro em contato.';
-        feedback.style.color = '#e8ff5a'; /* amarelo — sucesso */
-
-        /* limpa o formulário após envio */
+        /* limpa os campos após o envio */
         form.reset();
 
-        /* remove o feedback depois de 5 segundos
-           setTimeout executa uma função uma vez
-           após o delay em milissegundos          */
-        setTimeout(function () {
-          feedback.textContent = '';
-        }, 5000);
+           }
 
-      }
+    });
 
-    }); /* fim do submit listener */
+  }
 
-  } /* fim do if do form */
-
-
-}); /* fim do DOMContentLoaded */
+});

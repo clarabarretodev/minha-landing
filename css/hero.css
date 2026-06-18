@@ -38,7 +38,7 @@
 }
 
 /* a palavra em amarelo */
-.hero h1 em {
+.hero h1 .accent {
   color: var(--color-accent);
   font-style: normal;
 }
