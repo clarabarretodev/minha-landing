@@ -26,13 +26,10 @@
   --color-text-secondary: #aaaaaa;
   --color-text-muted:     #767676;
 
-  /* ── CORES: Acento ──
-     #e8ff5a sobre #111 → ratio 14:1  AAA ✅
-     #111 sobre #e8ff5a → ratio 14:1  AAA ✅
-  */
-  --color-accent:       #e8ff5a;
-  --color-accent-hover: #f5ff8a;  /* clareado para hover */
-  --color-accent-text:  #111111;  /* texto sobre fundo acento */
+/* ── CORES: Acento ── */
+--color-accent:       #ff8c42;
+--color-accent-hover: #ffaa5e;  /* um tom acima para hover */
+--color-accent-text:  #111111;  /* texto sobre fundo acento — mantém */
 
   /* ── TIPOGRAFIA: Famílias ── */
   --font-heading: 'Outfit', sans-serif;

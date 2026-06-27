@@ -88,7 +88,7 @@
       ctx.moveTo(p.x, p.y);
       ctx.lineTo(nx, ny);
       ctx.strokeStyle = p.accent
-        ? 'rgba(232,255,90,' + (life * 1.0) + ')'
+        ? 'rgba(255,140,66,' + (life * 1.0) + ')'
         : 'rgba(255,255,255,' + (life * 0.35) + ')';
       ctx.lineWidth = p.accent ? 0.8 : 0.5;
       ctx.stroke();

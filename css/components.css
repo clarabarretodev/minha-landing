@@ -460,7 +460,7 @@ em.accent {
  
 /* email — versão com destaque transparente */
 .contact-item--highlight {
-  background: rgba(232, 255, 90, 0.10);
+  background: rgba(255, 140, 66, 0.10);
   border: 0.5px solid var(--color-accent);
 }
  
@@ -475,7 +475,7 @@ em.accent {
  
 .contact-item--highlight .contact-copy {
   color: var(--color-accent);
-  border-color: rgba(232, 255, 90, 0.4);
+  border-color: rgba(255, 140, 66, 0.4);
 }
  
 .contact-label {
