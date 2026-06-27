@@ -9,7 +9,7 @@
    Definida aqui pois é uma decisão de layout,
    não um token global de espaçamento.         */
 :root {
-  --space-section: 24px;  /* padding horizontal padrão */
+  --space-section: 32px;  /* padding horizontal padrão */
 }
 
 /* ============================================
