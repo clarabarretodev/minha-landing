@@ -235,119 +235,70 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
+
+    
   } /* fim do if de verificação do carrossel */
+
+  /* ==========================================
+     PARTE 3 — BOTÃO DE COPIAR EMAIL
+     ========================================== */
+
+  const copyBtn = document.querySelector('.contact-copy');
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      const text = copyBtn.getAttribute('data-copy');
+      navigator.clipboard.writeText(text).then(function () {
+        const original = copyBtn.textContent;
+        copyBtn.textContent = 'Copiado!';
+        setTimeout(function () {
+          copyBtn.textContent = original;
+        }, 2000);
+      });
+    });
+  }
 
 
   /* ==========================================
-     PARTE 3 — FORMULÁRIO DE CONTATO
+     PARTE 4 — PARALLAX DO FUNDO EM CONTATO
      ==========================================
 
-     O formulário tem novalidate no HTML, então
-     o browser não valida sozinho. O JS faz:
-     1. Verifica se os campos estão preenchidos
-     2. Verifica se o email tem formato válido
-     3. Mostra feedback visual para o usuário
-     4. (Futuro) envia os dados para um serviço
+     getBoundingClientRect(): posição do elemento
+     em relação à janela visível agora.
+     .top = distância do topo do elemento até
+     o topo da tela (negativo depois que passa).
 
-     CONCEITOS NOVOS:
-     → event.target: o elemento que disparou
-       o evento (no caso, o form)
-     → .value: lê o conteúdo digitado num input
-     → .trim(): remove espaços em branco das
-       pontas de uma string
-     → RegExp / regex: padrão para validar
-       o formato de um email
-     → classList.add / remove: adiciona ou
-       remove classes CSS de um elemento
+     ticking: evita calcular mais vezes por
+     segundo do que o navegador consegue desenhar.
      ========================================== */
 
-  const form = document.getElementById('contact-form');
+  const contactBg = document.querySelector('.contact-bg');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (form) {
+  if (contactBg && !prefersReducedMotion) {
 
-    form.addEventListener('submit', function (event) {
+    let ticking = false;
 
-      /* cancela o envio padrão do browser
-         (que recarregaria a página)         */
-      event.preventDefault();
+    function updateParallax() {
+      const rect = contactBg.parentElement.getBoundingClientRect();
 
-      /* lê os valores dos campos
-         .trim() remove espaços acidentais
-         ex: "  clara  " → "clara"           */
-      const nome     = document.getElementById('nome').value.trim();
-      const email    = document.getElementById('email').value.trim();
-      const mensagem = document.getElementById('mensagem').value.trim();
-
-      /* ── validação ──
-
-         Um array (lista) de erros.
-         Se ficar vazio ao final, tudo certo.
-         Se tiver itens, mostramos as mensagens. */
-      const erros = [];
-
-      if (nome === '') {
-        erros.push('Por favor, informe seu nome.');
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const speed = 0.15;
+        const offset = rect.top * speed;
+        contactBg.style.transform = 'translateY(' + offset + 'px)';
       }
 
-      /* regex de email: verifica se tem o padrão
-         texto@texto.texto
-         O método .test() retorna true ou false   */
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (email === '') {
-        erros.push('Por favor, informe seu email.');
-      } else if (!emailRegex.test(email)) {
-        erros.push('Por favor, informe um email válido.');
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
       }
-
-      if (mensagem === '') {
-        erros.push('Por favor, escreva uma mensagem.');
-      }
-
-      /* ── feedback visual ──
-
-         Busca ou cria um elemento de feedback
-         logo abaixo do botão de envio.          */
-      let feedback = document.getElementById('form-feedback');
-
-      if (!feedback) {
-        /* cria o elemento se ainda não existe */
-        feedback = document.createElement('p');
-        feedback.id = 'form-feedback';
-        feedback.style.fontSize   = '12px';
-        feedback.style.marginTop  = '8px';
-        feedback.style.fontFamily = 'monospace';
-        form.appendChild(feedback);
-      }
-
-      if (erros.length > 0) {
-
-        /* mostra o primeiro erro encontrado */
-        feedback.textContent = erros[0];
-        feedback.style.color = '#ff6b6b'; /* vermelho — erro */
-
-        /* foco no primeiro campo com problema
-           para acessibilidade                  */
-        if (nome === '') {
-          document.getElementById('nome').focus();
-        } else if (!emailRegex.test(email)) {
-          document.getElementById('email').focus();
-        } else {
-          document.getElementById('mensagem').focus();
-        }
-
-            } else {
-
-        /* nenhum erro — formulário válido */
-        feedback.textContent = 'Mensagem enviada com sucesso!';
-        feedback.style.color = '#4caf50'; /* verde — sucesso */
-
-        /* limpa os campos após o envio */
-        form.reset();
-
-           }
-
     });
-
   }
 
-});
+
+}); /* fim do DOMContentLoaded */
+
