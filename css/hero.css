@@ -9,43 +9,15 @@
    ESTRUTURA
    ============================================ */
 
-/* o hero já tem position: relative no layout.css
-   o canvas fica na camada mais baixa (z-index 1)
-   o conteúdo fica acima (z-index 2)              */
-
-.hero-content {
+.hero {
+  position: relative;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
+  padding: var(--space-lg);
+  overflow: hidden;
 }
-
-/* espaço entre o h1 e o subtítulo */
-.hero-content h1 {
-  margin-bottom: 0; /* reset — espaço vem do hero-sub margin-top */
-}
-
-/* ============================================
-   TIPOGRAFIA DO HERO
-   ============================================ */
-
-/* h1 herda de components.css mas ganha
-   ajuste de tamanho responsivo aqui         */
-.hero h1 {
-  font-size: clamp(32px, 10vw, var(--text-xl));
-  /* clamp(mínimo, fluido, máximo)
-     → em telas muito pequenas não fica menor que 32px
-     → cresce com a tela até o máximo de 38px          */
-}
-
-/* a palavra em amarelo */
-.hero h1 .accent {
-  color: var(--color-accent);
-  font-style: normal;
-}
-
-/* ============================================
-   CANVAS — animação bézier
-   ============================================ */
 
 #hero-canvas {
   position: absolute;
@@ -53,52 +25,77 @@
   width: 100%;
   height: 100%;
   z-index: var(--z-canvas);
-  /* declara que é decorativo para leitores de tela */
-  /* aria-hidden="true" fica no HTML               */
-
-  /* evita que o canvas capture eventos de mouse/touch
-     que deveriam chegar ao conteúdo abaixo          */
   pointer-events: none;
 }
 
 /* ============================================
-   CAMADAS DA ANIMAÇÃO
-   Documentação das três camadas desenhadas
-   via JavaScript no hero-canvas.js:
-
-   1. RUÍDO
-      — canvas de ruído estático gerado uma vez
-      — desloca levemente a cada frame (drift)
-      — globalAlpha: 0.018 (muito sutil)
-      — cria textura de grain fotográfico
-
-   2. CURVA BÉZIER
-      — 4 pontos de controle
-      — cp1 e cp2 derivam com sin/cos
-      — strokeStyle: rgba(232,255,90, ~0.12–0.17)
-      — lineWidth: 0.9px
-      — pontos de controle: círculos de 2.2px
-      — linhas auxiliares: rgba(232,255,90, 0.05)
-
-   3. CARACTERES DE CÓDIGO
-      — array: ['b','e','z','i','e','r',
-                '(','x',',',' ','y',')',
-                ' ','{','}',' ','=','>',' ','p','a','t','h']
-      — aparecem com fade-in escalonado (delay: i × 22)
-      — opacidade máxima: 0.38
-      — pulsam em sincronia com a curva
-      — font: 9px monospace
+   TIPOGRAFIA DO HERO
    ============================================ */
 
+.hero-name {
+  position: relative;
+  z-index: var(--z-content);
+  font-size: clamp(72px, 22vw, 96px);
+  line-height: 0.92;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-name .line-1 {
+  margin-left: 0;
+}
+
+.hero-name .line-2 {
+  /* mobile: sem recuo — cabe justo na tela estreita */
+  margin-left: 0;
+}
+
+.hero-name .accent {
+  color: var(--color-accent);
+}
+
 /* ============================================
-   REDUCED MOTION — respeita preferência do SO
+   CONTEÚDO
+   ============================================ */
+
+.hero-content {
+  position: relative;
+  z-index: var(--z-content);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* tag e subtítulo ficam no rodapé esquerdo */
+.hero-bottom {
+  position: relative;
+  z-index: var(--z-content);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.hero-sub {
+  max-width: 280px;
+  font-size: 14px;
+  color: var(--color-muted, #666);
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+}
+
+/* ============================================
+   CANVAS — animação bézier
    ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
-  /* o canvas continua visível mas a animação
-     é pausada via JS (ver hero-canvas.js)     */
   #hero-canvas {
-    opacity: 0.4; /* mostra o estado inicial, sem movimento */
+    opacity: 0.4;
   }
 }
 
@@ -108,66 +105,90 @@
 
 /* tablet */
 @media (min-width: 768px) {
-  .hero h1 {
-    font-size: clamp(38px, 6vw, 52px);
+  .hero-name {
+    font-size: clamp(96px, 16vw, 140px);
+  }
+
+  .hero-name .line-2 {
+    /* tablet: recuo sutil começa a aparecer */
+    margin-left: 4vw;
   }
 
   .hero-sub {
-    max-width: 280px;
+    max-width: 300px;
+    font-size: 15px;
   }
 }
 
 /* desktop */
 @media (min-width: 1024px) {
-  .hero h1 {
-    font-size: clamp(52px, 5vw, 72px);
+  .hero-name {
+    font-size: clamp(120px, 13.5vw, 200px);
+  }
+
+  .hero-name .line-2 {
+    /* desktop: recuo cheio — cria a queda diagonal */
+    margin-left: 7vw;
+  }
+
+  .hero-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .hero-actions {
+    margin-top: 0;
+    align-items: flex-end;
   }
 
   .hero-sub {
     max-width: 320px;
     font-size: 15px;
   }
+}
 
-  .hero-stat .stat-number {
-    font-size: 38px;
+/* desktop largo */
+@media (min-width: 1440px) {
+  .hero-name {
+    font-size: clamp(160px, 13.5vw, 220px);
   }
 }
 
 /* ============================================
-   HERO — estrutura e composição
+   SCROLL HINT
    ============================================ */
 
-.hero {
-   position: relative;
-   min-height: 100svh;
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-end;
-   padding: var(--space-lg);
-   overflow: hidden;
+.scroll-hint {
+  display: none; /* oculto no mobile */
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #333;
+  writing-mode: vertical-rl;
+  position: absolute;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  z-index: var(--z-content);
 }
 
-#hero-canvas {
-   position: absolute;
-   inset: 0;
-   width: 100%;
-   height: 100%;
-   z-index: var(--z-canvas);
-   pointer-events: none;
+@media (min-width: 1024px) {
+  .scroll-hint {
+    display: block;
+  }
 }
 
-.hero-content {
-   position: relative;
-   z-index: var(--z-content);
-   display: flex;
-   flex-direction: column;
-   gap: var(--space-sm);
-   max-width: 400px;
-}
+/* ============================================
+   HERO ACTIONS — sobrescreve components.css
+   os botões do hero não devem ser full-width
+   ============================================ */
 
-.hero-actions {
-   display: flex;
-   flex-direction: column;
-   gap: var(--space-xs);
-   margin-top: var(--space-xs);
+.hero-actions .btn-primary,
+.hero-actions .btn-outline {
+  width: auto;
+  min-width: 180px;
+  padding: 12px 28px;
+  display: block;
+  text-align: center;
 }

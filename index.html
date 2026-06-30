@@ -38,21 +38,33 @@
 
       <section id="hero" class="hero" aria-labelledby="hero-heading">
 
-        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-fade" aria-hidden="true"></div>
 
-        <div class="hero-fade" aria-hidden="true" ></div>
+  <!-- topo: só a nav já existente cuida disso -->
 
-        <div class="hero-content">
-          <p class="sec-label">design x desenvolvimento</p>
-          <h1 id="hero-heading">Clara<br>Barreto <span class="accent">.</span></h1>
-          <p class="hero-sub">Estudante de front-end com background em design. Construo interfaces que unem estética e código.</p>
-          <div class="hero-actions">
-            <a class="btn-primary" href="#projetos">ver projetos</a>
-            <a class="btn-outline" href="#contato">currículo</a>
-          </div>
-        </div>
+  <!-- meio: nome escalonado -->
+  <div class="hero-name" aria-hidden="true">
+    <span class="line-1">Clara</span>
+    <span class="line-2">Barreto<span class="accent">.</span></span>
+  </div>
 
-      </section>
+  <!-- rodapé: tag + sub à esquerda, botões à direita (desktop) -->
+  <div class="hero-bottom">
+    <div class="hero-content">
+      <p class="sec-label">design × desenvolvimento</p>
+      <p class="hero-sub">Estudante de front-end com background em design. Construo interfaces que unem estética e código.</p>
+    </div>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#projetos">ver projetos</a>
+      <a class="btn-outline" href="#contato">currículo</a>
+    </div>
+  </div>
+
+  
+
+</section>
+
 
       <section id="sobre" class="sec" aria-labelledby="sobre-heading">
   <p class="sec-label">sobre</p>
