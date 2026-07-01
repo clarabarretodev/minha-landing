@@ -631,3 +631,20 @@ em.accent {
   line-height: var(--leading-loose);
   margin-top: var(--space-xs);
 }
+
+.coming-soon-cta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 0.5px solid rgba(255, 140, 66, 0.4);
+  padding-bottom: 2px;
+  display: inline-block;
+  text-decoration: none;
+  transition: border-color var(--transition-fast);
+}
+
+.coming-soon-cta:hover {
+  border-color: var(--color-accent);
+}
